@@ -1,0 +1,53 @@
+.login-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+
+}
+
+.loginCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid rgb(209, 209, 209);
+    width: 25rem;
+    border-radius: 0.5rem;
+}
+
+.login-error{
+    margin: 0.5rem;
+}
+
+.carbg{
+    height: 590px;
+    width: 441px;
+    position: relative;
+    margin-right: 5rem;
+}
+
+.car{
+    height: 423px;
+    width: 241px;
+    position: absolute;
+    left: 143px;
+    top:93px
+}
+
+@media only screen and (max-width:620px){
+    .loginCard{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 900px){
+    .carbg{
+        display: none;
+    }
+}
