@@ -16,13 +16,13 @@ export default function signup() {
                 <TextField fullWidth margin="dense" size='small' id="outlined-basic" label="Full Name" variant="outlined" />
                 {/* <div className='signup-error' style={{color:'red'}}>Error Yha aaega</div> */}
                 {/* <label htmlFor="contained-button-file" fullWidth> */}
-                    <Button variant="outlined" margin='dense' fullWidth component="span" sx={{marginTop:"1rem"}}>
-                    <Input accept="image/*" style={{display:'none'}}/>
-                        Upload
-                    </Button>
+                <Button variant="outlined" margin='dense' fullWidth component="label" sx={{ marginTop: "1rem" }}>
+                    <input type="file" accept="image/*" style={{ display: 'none' }} />
+                    Upload
+                </Button>
                 {/* </label> */}
                 {/* <div className='signup-error' style={{ color: 'blue' }}>Forgot Password ? </div> */}
-                <Button fullWidth variant="contained" sx={{marginTop:"1rem"}}>Sign Up</Button>
+                <Button fullWidth variant="contained" sx={{ marginTop: "1rem" }}>Sign Up</Button>
             </div>
             <div className='signupCard' style={{ marginTop: '1rem' }}>
                 <div className='signup-error' >Don't have an account ? <span style={{ color: 'blue' }}>Sign up</span></div>
