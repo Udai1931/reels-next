@@ -21,5 +21,6 @@
 
 .profile-videos-container > video {
     height: 20rem;
+    width: 10rem;
     padding: 0.5rem;
 }

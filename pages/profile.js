@@ -31,6 +31,7 @@ function Profile() {
             const unsub = onSnapshot(doc(db, "posts", postid), (doc) => {
                 // console.log(doc.data());
                 tempArray.push(doc.data())
+                console.log(tempArray)
                 setPosts([...tempArray])
             })
         })
