@@ -1,0 +1,43 @@
+.posts-container{
+    height: 80vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    margin-top: 0.5rem;
+}
+
+.posts-container::-webkit-scrollbar {
+    display: none;
+}
+
+.video-container{
+    height: 80vh;
+    width: 20rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.video-container > video{
+    border-radius: 10px;
+    /* height: 80vh; */
+    object-fit: fill;
+    width: 100%;
+    scroll-snap-align: start;
+}
+
+.video-info{
+    position: absolute;
+    bottom: 2.5rem;
+    left: 1rem;
+    color: white;
+}
+
+@media screen and (max-width: 350px){
+    .video-container{
+        width: 100%;
+    }
+}

@@ -3,15 +3,35 @@ import insta from './insta.jpg';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Image from 'next/image';
-import { useContext } from 'react';
+import { useContext,useState } from 'react';
 import { AppContext } from '../context/auth';
 import { useEffect } from 'react';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image as Img } from 'pure-react-carousel';
-
+import {useRouter} from 'next/router';
+import Link from 'next/link';
 
 export default function BasicCard() {
+    const router = useRouter();
+    const { login } = useContext(AppContext);
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [error,setError] = useState('');
+    const [loading,setLoading] = useState(false);
 
-    const { signup } = useContext(AppContext);
+    const handleClick = async() => {
+        try{
+            setError('')
+            setLoading(true)
+            await login(email,password)
+            router.push('/')
+        }catch{
+            setError('Invalid Credentials')
+            setTimeout(()=>{
+                setError('')
+            },2000);
+        }
+        setLoading(false)
+    }
 
     return (
         <div className='login-container'>
@@ -40,14 +60,16 @@ export default function BasicCard() {
                 <div className="loginCard">
                     {/* <img src={insta} /> */}
                     <Image src={insta} />
-                    <TextField fullWidth size="small" margin='dense' id="outlined-basic" label="Email" variant="outlined" />
-                    <TextField fullWidth size="small" margin="dense" id="outlined-basic" label="Password" variant="outlined" />
-                    <div className='login-error' style={{ color: 'red' }}>Error Yha aaega</div>
+                    <TextField fullWidth size="small" margin='dense' id="outlined-basic" label="Email" variant="outlined" value={email} onChange={(e)=>setEmail(e.target.value)} />
+                    <TextField fullWidth size="small" margin="dense" id="outlined-basic" label="Password" variant="outlined" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                    <div className='login-error' style={{ color: 'red' }}>{
+                        error != '' && error 
+                    }</div>
                     <div className='login-error' style={{ color: 'blue' }}>Forgot Password ? </div>
-                    <Button fullWidth variant="contained">Login</Button>
+                    <Button fullWidth variant="contained" onClick={()=>handleClick()}>Login</Button>
                 </div>
                 <div className='loginCard' style={{ marginTop: '1rem' }}>
-                    <div className='login-error' >Don't have an account ? <span style={{ color: 'blue' }}>Sign up</span></div>
+                    <div className='login-error' >Don't have an account ? <Link href="signup"><span style={{ color: 'blue' }}>Sign up</span></Link></div>
                 </div>
             </div>
         </div>

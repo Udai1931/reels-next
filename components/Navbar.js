@@ -15,11 +15,18 @@ import HomeIcon from '@mui/icons-material/Home';
 import ExploreIcon from '@mui/icons-material/Explore';
 import insta from '../assets/insta.jpg';
 import Image from 'next/image';
-
+import { useContext } from 'react';
+import { AppContext } from '../context/auth';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = (props) => {
+
+    const { logout, user } = useContext(AppContext);
+    const router = useRouter();
+    // console.log(store)
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -38,9 +45,14 @@ const ResponsiveAppBar = () => {
         setAnchorElUser(null);
     };
 
+    const handleLogout = () => {
+        logout();
+        router.push('/login');
+    }
+
     return (
         <>
-            <AppBar position="static" sx={{ background: "white", paddingLeft: '1rem', paddingRight: '1rem', color: "black", height: "10vh", display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <AppBar position="static" sx={{ background: "white", paddingLeft: '1rem', paddingRight: '1rem', color: "black", height: "10vh", display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100vw' }}>
                 <Container maxWidth="xl">
                     <Toolbar disableGutters >
                         {/* <Typography
@@ -50,8 +62,9 @@ const ResponsiveAppBar = () => {
                         sx={{ mr: 2, display: { xs: 'fllex', md: 'flex' } }}
                     >
                     </Typography> */}
-                        <Image src={insta} height="55" width={200} />
-
+                        <Link href="/">
+                            <Image src={insta} height="55" width={200} />
+                        </Link>
                         {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -75,12 +88,12 @@ const ResponsiveAppBar = () => {
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'flex' } }}>
                         </Box>
 
-                        <Box sx={{ flexGrow: 0 }}>
+                        <Box sx={{ flexGrow: 0, display: 'flex' }}>
+                            <HomeIcon fontSize='large' sx={{ margin: '0.5rem', display: { xs: 'none', sm: 'flex', color: "#000" } }} />
+                            <ExploreIcon fontSize='large' sx={{ margin: '0.5rem', display: { xs: 'none', sm: 'flex', color: "#000" } }} />
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <HomeIcon fontSize='large' sx={{ margin: '0.5rem', display: { xs: 'none', sm: 'flex', color: "#000" } }} />
-                                    <ExploreIcon fontSize='large' sx={{ margin: '0.5rem', display: { xs: 'none', sm: 'flex', color: "#000" } }} />
-                                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" sx={{ margin: '0.5rem' }} />
+                                    <Avatar alt="Remy Sharp" src={props?.userData?.profileUrl} sx={{ margin: '0.5rem' }} />
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -99,11 +112,19 @@ const ResponsiveAppBar = () => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
+                                <MenuItem onClick={handleCloseUserMenu}>
+                                    <Link href="/profile">
+                                        <Typography textAlign="center">Profile</Typography>
+                                    </Link>
+                                </MenuItem>
+                                <MenuItem onClick={() => handleLogout()}>
+                                    <Typography textAlign="center">Logout</Typography>
+                                </MenuItem>
+                                {/* {settings.map((setting) => (
                                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
                                         <Typography textAlign="center">{setting}</Typography>
                                     </MenuItem>
-                                ))}
+                                ))} */}
                             </Menu>
                         </Box>
                     </Toolbar>
