@@ -69,7 +69,7 @@ export default function BasicCard() {
                     <Button fullWidth variant="contained" onClick={()=>handleClick()}>Login</Button>
                 </div>
                 <div className='loginCard' style={{ marginTop: '1rem' }}>
-                    <div className='login-error' >Don't have an account ? <Link href="signup"><span style={{ color: 'blue' }}>Sign up</span></Link></div>
+                    <div className='login-error' >Dont have an account ? <Link href="signup"><span style={{ color: 'blue' }}>Sign up</span></Link></div>
                 </div>
             </div>
         </div>

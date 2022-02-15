@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 import { AppContext } from '../context/auth';
 import { db } from '../firebase';
 
-function profile() {
+function Profile() {
 
     const { user } = useContext(AppContext);
     const [userData, setUserData] = useState({})
@@ -27,7 +27,7 @@ function profile() {
 
     useEffect(async () => {
         let tempArray = []
-        postsid.map(async (postid) => {
+        postsid.map(async (postid,idx) => {
             const unsub = onSnapshot(doc(db, "posts", postid), (doc) => {
                 // console.log(doc.data());
                 tempArray.push(doc.data())
@@ -54,8 +54,8 @@ function profile() {
                 <div className='profile-videos-container'>
                     {console.log(posts.length)}
                     {
-                        posts.map((post)=>(
-                            <video src={post.postUrl}/>
+                        posts.map((post,idx)=>(
+                            <video key={idx} src={post.postUrl}/>
                         ))
                     }
                 </div>

@@ -5,11 +5,13 @@ import { AppContext } from '../context/auth';
 import { arrayRemove, arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import ReactDom from 'react-dom';
+import {useRef} from 'react'
 
 function Post(props) {
 
     const [like,setLike] = React.useState(false)
     const {user} = useContext(AppContext)
+    const videoRef = useRef(null)
 
     React.useEffect(()=>{
         if(props.postData.likes.includes(user.uid)){
@@ -39,7 +41,7 @@ function Post(props) {
     }
 
     const handleScroll = (e) => {
-        let next = ReactDom.findDOMNode(e.target).parentNode.nextSibling
+        let next = videoRef.current.parentNode.nextSibling
         if(next){
             next.scrollIntoView({behaviour:"smooth"})
             e.target.muted = true
@@ -48,7 +50,7 @@ function Post(props) {
 
     return (
         <div className='video-container' style={{display:"flex"}}>
-            <video src={props.postData.postUrl} muted onClick={handleClick} onEnded={handleScroll} />
+            <video ref={videoRef} src={props.postData.postUrl} muted onClick={handleClick} onEnded={handleScroll} />
             <div className='video-info'>
                 <div style={{display:"flex",alignItems:"center",fontWeight:"bold"}}>
                     {props.postData.likes.length > 0 && props.postData.likes.length} <FavoriteIcon style={ !like ? {marginLeft:"0.5rem",color:"white"} : {marginLeft:"0.5rem",color:"red"}} onClick={handleLike} />

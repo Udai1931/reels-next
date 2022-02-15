@@ -11,7 +11,7 @@ import { AppContext } from '../context/auth';
 import { serverTimestamp, setDoc, doc } from 'firebase/firestore';
 import { db, storage } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-export default function sign() {
+export default function Sign() {
 
     const router = useRouter();
     const [email, setEmail] = useState('');
@@ -108,7 +108,7 @@ export default function sign() {
                 <Button fullWidth variant="contained" sx={{ marginTop: "1rem" }} onClick={handleClick} disabled={loading}>Sign Up</Button>
             </div>
             <div className='signupCard' style={{ marginTop: '1rem' }}>
-                <div className='signup-error' >Don't have an account ? <span style={{ color: 'blue' }} onClick={() => router.push('/login')}>Sign up</span></div>
+                <div className='signup-error' >Dont have an account ? <span style={{ color: 'blue' }} onClick={() => router.push('/login')}>Sign up</span></div>
             </div>
         </div>
     );
