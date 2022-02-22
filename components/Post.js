@@ -43,7 +43,7 @@ function Post(props) {
     const handleScroll = (e) => {
         let next = videoRef.current.parentNode.nextSibling
         if(next){
-            next.scrollIntoView({behaviour:"smooth"})
+            next.scrollIntoView({behavior:"smooth"})
             e.target.muted = true
         }
     }

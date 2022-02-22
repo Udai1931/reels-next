@@ -52,9 +52,4 @@ export default function AuthProvider({ children }) {
       {!loading && children}
     </AppContext.Provider>
   )
-<<<<<<< HEAD:context/Auth.js
 }
-=======
-}
-// mnybtrvcew
->>>>>>> 3f1d5525e73236ff9c9c7643beff6f0e458c2390:context/auth.js
