@@ -10,7 +10,7 @@ import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image as Img }
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 
-export default function forgotpassword() {
+export default function Forgotpassword() {
     const router = useRouter();
     const { forgot } = useContext(AppContext);
     const [email,setEmail] = useState('');
